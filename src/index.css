@@ -1,0 +1,111 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "sandalsSlab";
+  src: url("@SandalsSlabRegular") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "sandalsScript";
+  src: url("@SandalsScriptRegular") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "sandalsSans";
+  src: url("@SandalsSansRegular") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "sandalsSans";
+  src: url("@SandalsSansMedium") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  color: #0066ff !important;
+  background: white;
+  width: 50px !important;
+  height: 50px !important;
+  border-radius: 50%;
+  box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
+}
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  font-size: 20px !important;
+}
+
+.swiper-button-next {
+  right: 20px !important;
+}
+
+.swiper-button-prev {
+  left: 20px !important;
+}
+
+/* css parallax effect */
+
+/* Section Styles */
+.hero-1 {
+  position: relative;
+  height: 130vh;
+  /* Combined height of top section and image */
+  overflow: hidden;
+}
+
+/* Top Section Styles */
+.top-section {
+  position: absolute;
+  /* Absolute positioning to overlap the image */
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 31vh;
+  /* 40% of the hero section */
+  z-index: 2;
+  /* Stays above the image */
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
+  background-color: #f8f0db;
+  padding: 1rem 0;
+}
+
+/* Image Styles */
+.sticky-image {
+  position: fixed;
+  /* Keep the image fixed in place during the scroll */
+  top: 0;
+  left: 0;
+  width: 100%;
+  /* height: 100vh; */
+  object-fit: cover;
+  /* Ensures the image covers the whole section */
+  z-index: 1;
+  /* Behind the top section */
+  transform: translateY(0);
+  /* Initially in place */
+}
+
+@media screen and (max-width: 767px) {
+  .hero-btn-section button {
+    width: auto;
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+    padding-left: 15px;
+    padding-right: 15px;
+    font-size: 0.75rem;
+    height: auto;
+  }
+}
