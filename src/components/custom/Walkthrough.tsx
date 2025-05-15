@@ -106,30 +106,28 @@ const Walkthrough = ({ onTourEnd, start }: WalkthroughProps) => {
 
     // Function to check element positions and update active step
     const checkElementPositions = () => {
-      // TOP_THRESHOLD determines how far from the top the element should be to trigger
-      const TOP_THRESHOLD = 100; // pixels from top
-
-      // We'll find the highest step that's currently at the top of the screen
-      // and is allowed to be shown (based on completion of previous steps)
       let highestVisibleStep: number | null = null;
+      const scrollPosition = window.scrollY;
 
       for (let i = 0; i <= highestAllowedStep; i++) {
-        // Skip if this step has already been completed
         if (completedSteps.has(i)) continue;
 
         const element = document.getElementById(TOUR_STEPS[i].id);
         if (!element) continue;
 
         const rect = element.getBoundingClientRect();
+        const elementTop = rect.top + scrollPosition;
+        const scrolledInSection = scrollPosition - elementTop;
+        const scrolledRatio = scrolledInSection / rect.height;
 
-        // Check if element is near the top of the screen
-        if (rect.top >= 0 && rect.top <= TOP_THRESHOLD) {
+        // Tooltip should be shown if we haven't scrolled more than 50% past the section
+        if (scrolledRatio <= 0.5 && scrollPosition + window.innerHeight > elementTop) {
           highestVisibleStep = i;
-          break; // Take the first (highest) one we find
+          break;
         }
       }
 
-      // Special handling for programmatic scroll
+      // Special case for programmatic scroll
       if (isProgrammaticScroll) {
         for (let i = 0; i <= highestAllowedStep; i++) {
           if (completedSteps.has(i)) continue;
@@ -138,8 +136,11 @@ const Walkthrough = ({ onTourEnd, start }: WalkthroughProps) => {
           if (!element) continue;
 
           const rect = element.getBoundingClientRect();
+          const elementTop = rect.top + scrollPosition;
+          const scrolledInSection = scrollPosition - elementTop;
+          const scrolledRatio = scrolledInSection / rect.height;
 
-          if (rect.top < window.innerHeight && rect.bottom > 0) {
+          if (scrolledRatio <= 0.5 && scrollPosition + window.innerHeight > elementTop) {
             highestVisibleStep = i;
             break;
           }
@@ -148,18 +149,20 @@ const Walkthrough = ({ onTourEnd, start }: WalkthroughProps) => {
         setIsProgrammaticScroll(false);
       }
 
-      // Update the active step if we found one
       if (highestVisibleStep !== null) {
         setActiveStep(highestVisibleStep);
         setIsVisible(true);
       } else if (activeStep !== null) {
-        // If the current active step is no longer visible, mark it as completed
-        // and hide the tooltip
         if (!isProgrammaticScroll) {
           const element = document.getElementById(TOUR_STEPS[activeStep].id);
           if (element) {
             const rect = element.getBoundingClientRect();
-            if (rect.top < 0 || rect.top > TOP_THRESHOLD) {
+            const elementTop = rect.top + scrollPosition;
+            const scrolledInSection = scrollPosition - elementTop;
+            const scrolledRatio = scrolledInSection / rect.height;
+
+            // Tooltip should hide after scrolling more than 50%
+            if (scrolledRatio > 0.5) {
               markStepComplete(activeStep);
               setIsVisible(false);
             }
@@ -167,6 +170,7 @@ const Walkthrough = ({ onTourEnd, start }: WalkthroughProps) => {
         }
       }
     };
+
 
     // Mark a step as completed and update allowed steps
     const markStepComplete = (step: number) => {
@@ -382,13 +386,12 @@ const Walkthrough = ({ onTourEnd, start }: WalkthroughProps) => {
       `}</style>
       <div
         ref={tooltipRef}
-        className={`box-border max-w-7xl mx-auto w-screen fixed z-[1000] ${
-          isFadingOut
+        className={`box-border max-w-7xl mx-auto w-screen fixed z-[1000] ${isFadingOut
             ? "tooltip-exit"
             : isVisible
-            ? "tooltip-enter"
-            : "tooltip-exit"
-        }`}
+              ? "tooltip-enter"
+              : "tooltip-exit"
+          }`}
         style={{
           top: `${tooltipPosition.top}px`,
           left: `${tooltipPosition.left}px`,

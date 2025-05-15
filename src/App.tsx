@@ -126,7 +126,7 @@ const App = () => {
         <div className="pt-10 pb-8 px-3 md:px-0" id="explore-map">
           <h2
             id="map-heading"
-            className="text-[#0066FF] text-4xl w-full overflow-visible max-w-7xl mx-auto md:w-10/12 lg:w-11/12 md:px-0 font-sandalsSlab  "
+            className="text-[#0066FF] text-2xl sm:text-4xl w-full overflow-visible max-w-7xl mx-auto md:w-10/12 lg:w-11/12 md:px-0 font-sandalsSlab  "
           >
             Explore the Map
           </h2>

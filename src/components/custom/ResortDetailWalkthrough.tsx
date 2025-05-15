@@ -16,6 +16,7 @@ const ResortDetailWalkthrough = ({
   const tooltipRef = useRef<HTMLDivElement>(null);
   const [tourCompleted, setTourCompleted] = useState(false);
   const [hasSeenPrompt, setHasSeenPrompt] = useState(false);
+  const [isClosing, setIsClosing] = useState(false);
 
   // Check if tour is completed
   useEffect(() => {
@@ -26,7 +27,7 @@ const ResortDetailWalkthrough = ({
 
   // Update tooltip position and visibility on scroll
   useEffect(() => {
-    if (tourCompleted) return;
+    if (tourCompleted || isClosing) return;
 
     const updatePosition = () => {
       const targetElement = document.getElementById("island-carousel-item");
@@ -84,14 +85,16 @@ const ResortDetailWalkthrough = ({
       window.removeEventListener("scroll", updatePosition);
       window.removeEventListener("resize", updatePosition);
     };
-  }, [isVisible, isMobile, tourCompleted, onTourEnd, hasSeenPrompt]);
+  }, [isVisible, isMobile, tourCompleted, onTourEnd, hasSeenPrompt, isClosing]);
 
   const handleClose = () => {
+    setIsClosing(true);
     setIsVisible(false);
     // Wait for fade-out animation to complete before marking as completed
     setTimeout(() => {
       sessionStorage.setItem("resortTourCompleted", "true");
       setTourCompleted(true);
+      setIsClosing(false);
       onTourEnd();
     }, 500); // Match this with the animation duration
   };
@@ -141,9 +144,8 @@ const ResortDetailWalkthrough = ({
       `}</style>
       <div
         ref={tooltipRef}
-        className={`box-border max-w-7xl mx-auto w-screen fixed z-[1000] ${
-          isVisible ? "tooltip-enter" : "tooltip-exit"
-        }`}
+        className={`box-border max-w-7xl mx-auto w-screen fixed z-[1000] ${isVisible ? "tooltip-enter" : "tooltip-exit"
+          }`}
         style={{
           top: `${tooltipPosition.top}px`,
           left: `${tooltipPosition.left}px`,

@@ -98,10 +98,14 @@
   /* Initially in place */
 }
 
+.hero-btn-section button {
+  padding-top: 1.85rem;
+}
+
 @media screen and (max-width: 767px) {
   .hero-btn-section button {
     width: auto;
-    padding-top: 0.75rem;
+    padding-top: 0.85rem;
     padding-bottom: 0.75rem;
     padding-left: 15px;
     padding-right: 15px;

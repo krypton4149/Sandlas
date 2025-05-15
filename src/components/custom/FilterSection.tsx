@@ -198,7 +198,7 @@ const FilterSection = ({
           <div className="flex lg:flex-row flex-col justify-between items-start">
             <div className=" text-primary w-full">
               <div className="flex justify-between">
-                <h2 className=" text-4xl font-sandalsSlab ">
+                <h2 className="text-2xl sm:text-4xl font-sandalsSlab ">
                   Match Your Interests
                 </h2>{" "}
               </div>

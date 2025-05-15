@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 // import { Plus, Minus } from "lucide-react";
-import { ZoomIn, ZoomOut } from "lucide-react";
+import { Expand, ZoomIn, ZoomOut } from "lucide-react";
 
 import { Button } from "../ui/button";
 // import { Dialog } from "@/components/ui/dialog";
@@ -262,43 +262,49 @@ const ResortGallery = ({
           <>
             {/* Main Selected Image */}
             {currentImages.length > 0 && (
-              <div className="mb-3">
+              <div className="relative mb-3">
                 <img
                   src={
                     currentImages[
-                      Math.min(selectedImage, currentImages.length - 1)
+                    Math.min(selectedImage, currentImages.length - 1)
                     ]
                   }
                   alt={`${resorts[activeCarouselIndex].ResortTitle} ${activeTab}`}
-                  className="w-full h-[250px] object-cover rounded-xl"
+                  className="w-full object-contain rounded-xl"
                   onClick={() => setIsPreviewOpen(true)}
                 />
+                <button
+                  onClick={() => setIsPreviewOpen(true)}
+                  className="absolute bottom-2 right-1 bg-[#00000050] p-1 rounded-md"
+                >
+                  <Expand className="w-5 text-white " />
+                </button>
               </div>
             )}
 
             {/* Thumbnail Grid */}
             <div className="grid grid-cols-4 gap-2 mb-4">
-              {currentImages.map((img: string, index: number) => (
-                <div
-                  key={index}
-                  onClick={() => setSelectedImage(index)}
-                  className={`aspect-square rounded-lg overflow-hidden border-2 ${
-                    index === selectedImage
+              {currentImages?.length > 1 &&
+                currentImages.map((img: string, index: number) => (
+                  <div
+                    key={index}
+                    onClick={() => setSelectedImage(index)}
+                    className={`aspect-square rounded-lg overflow-hidden border-2 ${index === selectedImage
                       ? "border-blue-600"
                       : "border-transparent"
-                  }`}
-                >
-                  <img
-                    src={img}
-                    alt={`${resorts[activeCarouselIndex].ResortTitle} ${activeTab} thumbnail`}
-                    className="w-full h-full object-cover"
-                    onError={(e) => {
-                      const target = e.target as HTMLImageElement;
-                      target.parentElement!.style.display = "none";
-                    }}
-                  />
-                </div>
-              ))}
+                      }`}
+                  >
+                    <img
+                      src={img}
+                      alt={`${resorts[activeCarouselIndex].ResortTitle} ${activeTab} thumbnail`}
+                      className="w-full h-full object-cover"
+                      onError={(e) => {
+                        const target = e.target as HTMLImageElement;
+                        target.parentElement!.style.display = "none";
+                      }}
+                    />
+                  </div>
+                ))}
             </div>
 
             {/* Description under images */}
@@ -407,9 +413,8 @@ const ResortGallery = ({
   return (
     <div
       id="resort-gallery"
-      className={`mx-auto  flex justify-center items-center bg-secondary relative overflow-hidden pb-8 mt-10 lg:mt-0 w-full ${
-        resorts.length > 0 ? "block" : "hidden"
-      }`}
+      className={`mx-auto  flex justify-center items-center bg-secondary relative overflow-hidden pb-8 mt-10 lg:mt-0 w-full ${resorts.length > 0 ? "block" : "hidden"
+        }`}
     >
       {/* Show the resort detail walkthrough only when needed */}
       {showResortTour && resorts.length > 0 && (
@@ -473,7 +478,7 @@ const ResortGallery = ({
                           </h4>
                           {/* Mobile Tabs Section */}
                           <div className="block lg:hidden mb-6">
-                            <div className="flex gap-3 overflow-x-auto pb-2 w-full">
+                            <div className="flex gap-1 md:gap-3 overflow-x-auto pb-2 w-full">
                               {resort?.Tabs?.map(
                                 (tab: { name: string; images?: string[] }) => {
                                   const isActiveTab = activeTab === tab.name;
@@ -486,11 +491,10 @@ const ResortGallery = ({
                                         onClick={() => handleTabClick(tab)}
                                         variant="ghost"
                                         size="sm"
-                                        className={`text-white rounded-none overflow-x-scroll whitespace-nowrap ${
-                                          isActiveTab
-                                            ? "border-b-4 border-white"
-                                            : "border-b-4 border-transparent"
-                                        }`}
+                                        className={`text-white rounded-none overflow-x-scroll whitespace-nowrap text-[80%] md:text-[100%] ${isActiveTab
+                                          ? "border-b-4 border-white"
+                                          : "border-b-4 border-transparent"
+                                          }`}
                                       >
                                         {tab.name}
                                       </Button>
@@ -503,7 +507,7 @@ const ResortGallery = ({
                             {/* Mobile Tab Content */}
                             {renderMobileTabContent()}
                           </div>
-                          <div className="mb-6  sm:hidden">
+                          <div className="mb-6  lg:hidden">
                             <h2 className="text-lg lg:text-xl font-sandalsSlab mb-3 lg:mb-4">
                               Ideal For
                             </h2>
@@ -546,17 +550,17 @@ const ResortGallery = ({
                               </div>
                             </div>
                           </div>
-                          {/* <div className="flex  sm:hidden gap-4 mb-6">
+                          <div className="flex  lg:hidden gap-4 mb-6">
                             <Button
                               onClick={() => handleBookNowClick(resort)}
                               variant="Quarter"
-                              className="w-full"
+                              className="w-full px-5"
                             >
                               Book Now
                             </Button>
-                            <Button className="w-full">Click To Call</Button>
-                          </div> */}
-                          <div className="flex gap-4 w-full sm:hidden mb-6 flex-col">
+                            <Button className="w-full px-5">Click To Call</Button>
+                          </div>
+                          <div className="flex gap-4 w-full lg:hidden mb-6 flex-col">
                             <Button variant="Tertiary" onClick={scrollToMap}>
                               Back To Map
                             </Button>
@@ -732,11 +736,10 @@ const ResortGallery = ({
                                       onClick={() => handleTabClick(tab)}
                                       variant="ghost"
                                       size="sm"
-                                      className={` text-black rounded-none  ${
-                                        isActiveTab
-                                          ? "border-b-4  border-primary"
-                                          : "border-b-4  border-transparent"
-                                      }`}
+                                      className={` text-black rounded-none  ${isActiveTab
+                                        ? "border-b-4  border-primary"
+                                        : "border-b-4  border-transparent"
+                                        }`}
                                     >
                                       {tab.name}
                                     </Button>
@@ -772,11 +775,10 @@ const ResortGallery = ({
                               )?.images?.map((img: string, index: number) => {
                                 return (
                                   <div
-                                    className={`cursor-pointer ${
-                                      activeTab === "Map"
-                                        ? "col-span-4"
-                                        : "col-span-2"
-                                    }`}
+                                    className={`cursor-pointer ${activeTab === "Map"
+                                      ? "col-span-4"
+                                      : "col-span-2"
+                                      }`}
                                     key={index + img}
                                     onClick={() => {
                                       setSelectedImage(index);
@@ -786,11 +788,10 @@ const ResortGallery = ({
                                     <img
                                       src={img}
                                       alt={`${resort.ResortTitle} ${activeTab}`}
-                                      className={`${
-                                        activeTab === "Map"
-                                          ? "h-[900px] lg:h-[930px]"
-                                          : "h-[250px]"
-                                      } w-full  object-cover rounded-3xl
+                                      className={`${activeTab === "Map"
+                                        ? "h-[900px] lg:h-[930px]"
+                                        : "h-[250px]"
+                                        } w-full  object-cover rounded-3xl
                                        
                                       
                                       `}
@@ -848,11 +849,10 @@ const ResortGallery = ({
                   key={pageIndex}
                   // onClick={() => setActiveCarouselIndex(pageIndex)}
                   onClick={() => handleActiveCarouselIndex(pageIndex)}
-                  className={`text-primary cursor-pointer text-xs font-medium h-10 w-10 flex items-center justify-center rounded-full border-[1.5px] border-primary ${
-                    activeCarouselIndex === pageIndex
-                      ? "bg-primary text-white"
-                      : "bg-transparent"
-                  }`}
+                  className={`text-primary cursor-pointer text-xs font-medium h-10 w-10 flex items-center justify-center rounded-full border-[1.5px] border-primary ${activeCarouselIndex === pageIndex
+                    ? "bg-primary text-white"
+                    : "bg-transparent"
+                    }`}
                 >
                   {(pageIndex + 1).toString().padStart(2, "0")}
                 </button>
@@ -927,9 +927,8 @@ const ResortGallery = ({
 
             {/* Update the main image container */}
             <div
-              className={`${
-                scale > 1 ? "fixed inset-0 " : "relative h-[calc(100vh-96px)]"
-              } flex items-center justify-center`}
+              className={`${scale > 1 ? "fixed inset-0 " : "relative h-[calc(100vh-96px)]"
+                } flex items-center justify-center`}
               onClick={(e) => e.stopPropagation()}
               onWheel={(e) => {
                 if (scale > 1) {
@@ -938,9 +937,8 @@ const ResortGallery = ({
               }}
             >
               <div
-                className={`relative ${
-                  scale > 1 ? "overflow-auto scrollbar-hide" : "overflow-hidden"
-                }`}
+                className={`relative ${scale > 1 ? "overflow-auto scrollbar-hide" : "overflow-hidden"
+                  }`}
                 style={{
                   maxWidth: scale > 1 ? "100vw" : "100%",
                   maxHeight: scale > 1 ? "100%" : "90%",
@@ -958,9 +956,8 @@ const ResortGallery = ({
                 <img
                   src={getCurrentTabImages()[selectedImage]}
                   alt={`${resorts[activeCarouselIndex].ResortTitle} ${activeTab}`}
-                  className={`object-contain transition-transform duration-200 ${
-                    scale === 1 ? "cursor-zoom-in" : "cursor-zoom-out"
-                  }`}
+                  className={`object-contain transition-transform duration-200 ${scale === 1 ? "cursor-zoom-in" : "cursor-zoom-out"
+                    }`}
                   style={{
                     transform: `scale(${scale})`,
                     transformOrigin: "center",
@@ -992,11 +989,10 @@ const ResortGallery = ({
                     <div
                       key={index}
                       onClick={() => setSelectedImage(index)}
-                      className={`w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden border-2 ${
-                        index === selectedImage
-                          ? "border-blue-600"
-                          : "border-transparent"
-                      }`}
+                      className={`w-16 h-16 flex-shrink-0 rounded-lg overflow-hidden border-2 ${index === selectedImage
+                        ? "border-blue-600"
+                        : "border-transparent"
+                        }`}
                     >
                       <img
                         src={img}

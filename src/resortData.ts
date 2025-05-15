@@ -433,7 +433,7 @@ export const resortData: Resort[] = [
 
     // "Ideal For": "Secluded privacy, natural attractions, beach lovers, water sports enthusiasts.",
 
-    Tags: "adults-only, adults-only,-18+, over-the-water-accommodations, more-tranquil, glass-bottom-boat, french, italian, more-social, more-expansive, scuba-on-property, caribbean, long-stretch, tennis, pickle-ball, motorized-watersports, over-the-water-villa, rondoval-suite, swim-up-suite, jerk-shack, sushi, distance-to-airport-more-than-an-hour  \n",
+    Tags: "adults-only, adults-only,-18+, skypool-and-swim-up-suites, rondoval-villas, over-the-water-accommodations, more-tranquil, glass-bottom-boat, french, italian, more-social, more-expansive, scuba-on-property, caribbean, long-stretch, tennis, pickle-ball, motorized-watersports, over-the-water-villa, rondoval-suite, swim-up-suite, jerk-shack, sushi, distance-to-airport-more-than-an-hour  \n",
     Images:
       "images/Sandals Royal Plantation/1 - Carousel_ResortHero_Slider/croissantsandcaviar_sandalsroyalplantation-15.jpg",
     Beaches: "images/Sandals Royal Plantation/4 - Beaches/SRP_Beach_Detail.jpg",
@@ -512,7 +512,7 @@ export const resortData: Resort[] = [
     ],
 
     // "Ideal For": "Natural attractions, adventure seekers, luxury travelers, food enthusiasts.",
-    Tags: "adults-only, adults-only,-18+, skypool-and-swim-up-suites, cove-beach, more-social, motorized-watersports, glass-bottom-boat, tennis, caribbean, sushi, french, italian, more-expansive, scuba-on-property, rondoval-suite, swim-up-suite, golf, rum-club, jerk-shack, distance-to-airport-more-than-an-hour  \n",
+    Tags: "adults-only, adults-only,-18+, rondoval-villas, skypool-and-swim-up-suites, cove-beach, more-social, motorized-watersports, glass-bottom-boat, tennis, caribbean, sushi, french, italian, more-expansive, scuba-on-property, rondoval-suite, swim-up-suite, golf, rum-club, jerk-shack, distance-to-airport-more-than-an-hour  \n",
     Images:
       "images/Sandals Dunn's River/1 - Carousel_ResortHero_Slider/Sandals_Dunns_River_Beach.jpg",
     Beaches:
@@ -594,7 +594,7 @@ export const resortData: Resort[] = [
 
     // "Ideal For": "Local immersion, food enthusiasts, lively entertainment, beach lovers.",
 
-    Tags: "adults-only, adults-only,-18+, cove-beach, more-expansive, motorised-watersport, pickle-ball, caribbean, steakhouse, french, italian, more-social, offshore-island, scuba-on-property, tennis, british-pub, sushi, teppanyaki, distance-to-airport-less-than-45-minutes \n",
+    Tags: "adults-only, adults-only,-18+, skypool-and-swim-up-suites, cove-beach, more-expansive, motorised-watersport, pickle-ball, caribbean, steakhouse, french, italian, more-social, offshore-island, scuba-on-property, tennis, british-pub, sushi, teppanyaki, distance-to-airport-less-than-45-minutes \n",
     Images:
       "images/Sandals Royal Bahamian/1 - Carousel_ResortHero_Slider/SRB - Aerial Beach 1.jpg",
     Beaches:
@@ -830,7 +830,7 @@ export const resortData: Resort[] = [
 
     // "Ideal For": "Pool enthusiasts, foodies, diving lovers.",
 
-    Tags: "adults-only, adults-only,-18+, skypool-and-swim-up-suites, rondoval-villas, long-stretch, more-social, bowling, caribbean, sushi, teppanyaki, indian, french, italian, more-expansive, swim-up-suite, skypool-suite, rondovol-villa, glass-bottom-boat, tennis, bowling, steakhouse, jerk shack, distance-to-airport-less-than-45-minutes \n",
+    Tags: "adults-only, adults-only,-18+, skypool-and-swim-up-suites, skypool-and-swim-up-suites, rondoval-villas, long-stretch, more-social, bowling, caribbean, sushi, teppanyaki, indian, french, italian, more-expansive, swim-up-suite, skypool-suite, rondovol-villa, glass-bottom-boat, tennis, bowling, steakhouse, jerk shack, distance-to-airport-less-than-45-minutes \n",
     Images:
       "images/Sandals Royal Barbados/1 - Carousel_ResortHero_Slider/SBR_SAINT_LAWRENCE_HOUSE_EXT_MAGIC_072.jpg",
     Beaches:
@@ -908,7 +908,7 @@ export const resortData: Resort[] = [
 
     // "Ideal For": "Tranquility, pool lovers, golfers' paradise.",
 
-    Tags: "adults-only, adults-only,-18+, skypool-and-swim-up-suites, more-tranquil, long-stretch, italian, more-intimate, golf, swim-up-suite, rondovol-villa, teppanyaki, sushi, distance-to-airport-more-than-an-hour \n",
+    Tags: "adults-only, adults-only,-18+, rondoval-villas, skypool-and-swim-up-suites, more-tranquil, long-stretch, italian, more-intimate, golf, swim-up-suite, rondovol-villa, teppanyaki, sushi, distance-to-airport-more-than-an-hour \n",
     Images:
       "images/Sandals Halcyon Beach/1 - Carousel_ResortHero_Slider/SHC Drone.jpg",
     Beaches: "images/Sandals Halcyon Beach/4 - Beaches/SHC Drone.jpg",
@@ -977,7 +977,7 @@ export const resortData: Resort[] = [
 
     // "Ideal For": " Golf enthusiasts, pool lovers, beach lovers, diving aficionados.",
 
-    Tags: "adults-only, adults-only,-18+, cove-beach, more-social, golf, french, italian, teppanyaki, british-pub, more-expansive, swim-up-suite, rondoval-villa, sushi,",
+    Tags: "adults-only, adults-only,-18+, rondoval-villas, cove-beach, more-social, golf, french, italian, teppanyaki, british-pub, more-expansive, swim-up-suite, rondoval-villa, sushi,",
     Images:
       "images/Sandals Regency La Toc/1 - Carousel_ResortHero_Slider/SLU Drone 3.jpg",
     Beaches: "images/Sandals Regency La Toc/4 - Beaches/SLU Drone 4-2.jpg",
@@ -1127,7 +1127,7 @@ export const resortData: Resort[] = [
 
     // "Ideal For": "Food and drink enthusiasts, diving lovers, golf lovers, pool enthusiasts, adventure seekers. ",
 
-    Tags: "adults-only, adults-only,-18+, cove-beach, golf, caribbean, french, italian, more-expansive, more-social, scuba-on-property, swim-up-suite, rondoval-villa, steakhouse, sushi,",
+    Tags: "adults-only, adults-only,-18+, skypool-and-swim-up-suites, rondoval-villas, cove-beach, golf, caribbean, french, italian, more-expansive, more-social, scuba-on-property, swim-up-suite, rondoval-villa, steakhouse, sushi,",
     Images:
       "images/Sandals Royal Curacao/1 - Carousel_ResortHero_Slider/croissantsandcaviar_sandalsroyalcuracao_resort-8.jpg",
     Beaches: "images/Sandals Royal Curacao/4 - Beaches/untitled-194(B).jpg",
@@ -1296,7 +1296,7 @@ export const resortData: Resort[] = [
 
     // "Ideal For": "Nature lovers, adventure seekers, diving enthusiasts, foodies.",
 
-    Tags: "adults-only, adults-only,-18+, more-social, pickle-ball, italian, more-expansive, cove-beach, scuba-on-property, tennis, overwater-villas, swim-up-suites, steakhouse, sushi, jerk-shack, distance-to-airport-less-than-45-minutes\n",
+    Tags: "adults-only, adults-only,-18+, skypool-and-swim-up-suites, more-social, pickle-ball, italian, more-expansive, cove-beach, scuba-on-property, tennis, overwater-villas, swim-up-suites, steakhouse, sushi, jerk-shack, distance-to-airport-less-than-45-minutes\n",
     Images:
       "images/Sandals Saint Vincent/1 - Carousel_ResortHero_Slider/Sandals-Saint-Vincent-aerial-beach.jpg",
     Beaches:

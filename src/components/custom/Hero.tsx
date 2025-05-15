@@ -4,49 +4,67 @@ import { handleHeroBookNowClick } from "@/constants";
 import { Dialog, DialogContent } from "../ui/dialog";
 import { X } from "lucide-react"; // Import X icon for close button
 
+const bulletPoints = [
+  "Explore the Map",
+  "Choose Your Island",
+  "Match Your Interests",
+];
+
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  // const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isCallDialogOpen, setIsCallDialogOpen] = useState(false);
 
   const carouselImages = [
     "assets/Carousel/Home-page-carousel_1.jpg",
+    "assets/Carousel/Home-page-carousel_8.jpg",// SPRING SALE
     "assets/Carousel/Home-page-carousel_2.jpg",
     "assets/Carousel/Home-page-carousel_3.jpg",
     "assets/Carousel/Home-page-carousel_5.jpg",
-    "assets/Carousel/Home-page-carousel_7.png",
-    "assets/Carousel/Home-page-carousel_8.jpg",
   ];
   const carouselMobImages = [
     "assets/Carousel/Carousel-1.jpeg",
+    "assets/Carousel/Home-page-mob-carousel_8.jpg",// SPRING SALE
     "assets/Carousel/Carousel-4.jpeg",
     "assets/Carousel/Home-page-carousel_3.jpg",
     "assets/Carousel/Home-page-carousel_5.jpg",
-    "assets/Carousel/carousel_image_6.jpg",
-    "assets/Carousel/Home-page-mob-carousel_8.png",
   ];
+
+  // useEffect(() => {
+  //   const isMobile = window.innerWidth < 768;
+  //   const images = isMobile ? carouselMobImages : carouselImages;
+  //   const interval = setInterval(() => {
+  //     setCurrentSlide((prev) => (prev + 1) % images.length);
+  //   }, 3000);
+
+
+  //   const handleClickOutside = (event: MouseEvent) => {
+  //     const target = event.target as HTMLElement;
+  //     if (isMenuOpen && !target.closest(".menu-container")) {
+  //       setIsMenuOpen(false);
+  //     }
+  //   };
+
+  //   document.addEventListener("mousedown", handleClickOutside);
+  //   return () => {
+  //     clearInterval(interval);
+  //     document.removeEventListener("mousedown", handleClickOutside);
+  //   };
+  // }, [isMenuOpen, carouselImages.length]);
 
   useEffect(() => {
     const isMobile = window.innerWidth < 768;
     const images = isMobile ? carouselMobImages : carouselImages;
-    const interval = setInterval(() => {
+
+    const slideDuration = currentSlide === 1 ? 4000 : 3000; // 4s for Spring Sale
+
+    const timeout = setTimeout(() => {
       setCurrentSlide((prev) => (prev + 1) % images.length);
-    }, 3000);
+    }, slideDuration);
 
+    return () => clearTimeout(timeout);
+  }, [currentSlide]);
 
-    const handleClickOutside = (event: MouseEvent) => {
-      const target = event.target as HTMLElement;
-      if (isMenuOpen && !target.closest(".menu-container")) {
-        setIsMenuOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      clearInterval(interval);
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [isMenuOpen, carouselImages.length]);
 
   const topContainerRef = useRef<HTMLDivElement>(null);
 
@@ -114,15 +132,16 @@ const Hero = () => {
             className="w-full  top-0 left-0 z-10  bg-[#f8f0db]"
           >
             <div className="flex flex-col pt-4">
-              <div className="flex flex-col md:flex-row items-center max-w-7xl md:w-10/12 lg:w-11/12 xl:w-screen sm:mx-auto justify-center md:justify-between px-4">
-                <img
+              <div className="flex flex-col md:flex-row items-center w-full md:w-10/12 lg:w-10/12 xl:w-10/12 sm:mx-auto justify-center md:justify-between px-4">
+                <div className="w-full flex md:w-[69px]"><img
                   src="assets/images/sandalsLogoImageThird.svg"
                   loading="lazy"
                   alt="Sandals Logo"
-                  className="w-250px cursor-pointer mb-3 md:mb-0 md:-ml-20 md:pl-4" // Added ml-0 to ensure it stays left
+                  className="w-250px cursor-pointer mb-8 md:mb-0 md:-ml-20 md:pl-4" // Added ml-0 to ensure it stays left
                   onClick={() => handlePageRefresh()}
                 />
-                <div className="flex flex-col md:flex-row items-center gap-4 -mr-0 md:-mr-20 pr-0 md:pr-4">
+                </div>
+                <div className="flex flex-col md:flex-row items-center gap-4  -mr-0 md:-mr-20 pr-0 md:pr-4">
                   <img
                     src="assets/images/sandalsLogo.svg"
                     loading="lazy"
@@ -262,17 +281,24 @@ const Hero = () => {
                 </div>
               </div>
               <div className="flex flex-col items-center   ">
-                <h1 className="text-[#0057ff] font-sandalsScript pt-5 sm:pt-14 mb-4 sm:mb-4 text-[38px] md:text-7xl font-normal text-center leading-[70px] ">
+                <h1 className="text-[#0057ff] font-sandalsScript pt-5 sm:pt-14 mb-4 md:mb-9 text-[30px] md:text-7xl font-normal text-center leading-[70px] ">
                   Find Your Caribbean
                 </h1>
-                <p className="text-[#0057ff] text-center px-3 mb-5 sm:mb-7 font-sansSandals text-sm md:text-xl leading-[22px] tracking-[-0.02em] ">
-                  <span className="block text-lg font-sandalsSans">
-                    Welcome home Sandals Select Rewards members!
+                <p className="text-[#0057ff] text-center px-3 mb-3 sm:mb-9 text-sm font-sansSandals md:text-xl leading-[22px] tracking-[-0.02em] ">
+                  <span className="block">
+                    Whatever path you take, we'll make you feel right at home.
                   </span>
-                  <span className="block text-lg font-sandalsSans">
-                    As a special member of our family, we invite you to explore
-                    Sandals and Beaches resorts like never before.
-                  </span>
+                </p>
+                <ul className="list-disc list-inside text-[#0057ff] text-start font-sansSandals mb-4 sm:mb-4 text-sm md:text-xl leading-[22px] tracking-[-0.02em]">
+                  {bulletPoints.map((point, index) => (
+                    <li key={index}>{point}</li>
+                  ))}
+                </ul>
+                <p
+                  id="hero-text"
+                  className="text-[#0057ff] text-center px-4 mb-5 font-sansSandals text-sm md:text-xl leading-[22px] tracking-[-0.02em]"
+                >
+                  Your Future Memories start here.
                 </p>
                 <div className="flex items-center justify-center flex-wrap md:flex-row gap-4 sm:gap-5 -mb-7 hero-btn-section">
                   <Button

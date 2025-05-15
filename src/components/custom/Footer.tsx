@@ -79,7 +79,7 @@ const Footer = () => {
               className="text-[rgba(248,240,219,1)]  text-xs sm:text-base leading-4 cursor-pointer tracking-tight"
               onClick={privacyChoiceClick}
             >
-              Your Privacy Choice
+              Your Privacy Choices
             </h2>
           </div>
         </div>
